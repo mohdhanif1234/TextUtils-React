@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
-import About from "./components/About"
+// import About from "./components/About"
 import Alert from './components/Alert';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
+// import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -66,18 +66,18 @@ function App() {
   }
   return (
     <>
-      <Router>
+      {/* <Router> */}
         <Navbar isDarkMode={isDarkMode} title="TextUtils" aboutText="About TextUtils" toggleMode={toggleMode} toggleSuccessStyle={toggleSuccessStyle} isSuccessStyle={isSuccessStyle} toggleWarningStyle={toggleWarningStyle} isWarningStyle={isWarningStyle} />
         <Alert alert={alert} />
-        <Switch>
+        {/* <Switch>
           <Route exact path="/about">
             <About />
           </Route>
-          <Route exact path="/">
+          <Route exact path="/"> */}
             <TextForm heading="Enter the text to analyze below" showAlert={showAlert} colorType={colorType} />
-          </Route>
+          {/* </Route>
         </Switch>
-      </Router>
+      </Router> */}
     </>
   );
 }
