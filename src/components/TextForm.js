@@ -33,6 +33,7 @@ function TextForm(props) {
         let copyText = document.getElementById("myBox");
         copyText.select();
         navigator.clipboard.writeText(copyText.value);
+        document.getSelection().removeAllRanges();
         props.showAlert("Text has been copied to clipboard!", "success")
     }
 
@@ -56,20 +57,20 @@ function TextForm(props) {
     return (
         <>
             <div className="container my-3">
-                <h1>{props.heading}</h1>
+                <h1 className="mb-3">{props.heading}</h1>
                 <div className="mb-3">
                     <textarea className="form-control" id="myBox" rows="8" value={text} onChange={handleOnChange}></textarea>
                 </div>
-                <button className={`btn btn-${props.colorType} mx-1`} onClick={handleUpClick}>Convert to Uppercase</button>
-                <button className={`btn btn-${props.colorType} mx-1`} onClick={handleLoClick}>Convert to Lowercase</button>
-                <button className={`btn btn-${props.colorType} mx-1`} onClick={handleClearText}>Clear Text</button>
-                <button className={`btn btn-${props.colorType} mx-1`} onClick={handleCopy}>Copy To Clipboard</button>
-                <button className={`btn btn-${props.colorType} mx-1`} onClick={capitalizeFirstLetter}>Capitalize First Letter</button>
-                <button className={`btn btn-${props.colorType} mx-1`} onClick={removeExtraWhiteSpaces}>Remove Extra White Spaces</button>
+                <button disabled={text.length === 0} className={`btn btn-${props.colorType} mx-1 my-1`} onClick={handleUpClick}>Convert to Uppercase</button>
+                <button disabled={text.length === 0} className={`btn btn-${props.colorType} mx-1 my-1`} onClick={handleLoClick}>Convert to Lowercase</button>
+                <button disabled={text.length === 0} className={`btn btn-${props.colorType} mx-1 my-1`} onClick={handleClearText}>Clear Text</button>
+                <button disabled={text.length === 0} className={`btn btn-${props.colorType} mx-1 my-1`} onClick={handleCopy}>Copy To Clipboard</button>
+                <button disabled={text.length === 0} className={`btn btn-${props.colorType} mx-1 my-1`} onClick={capitalizeFirstLetter}>Capitalize First Letter</button>
+                <button disabled={text.length === 0} className={`btn btn-${props.colorType} mx-1 my-1`} onClick={removeExtraWhiteSpaces}>Remove Extra White Spaces</button>
             </div>
             <div className="container my-3">
                 <h1>Your text summary</h1>
-                <p><strong>{text !== "" ? text.trim().split(" ").length : 0}</strong> words, <strong>{text.length}</strong> characters</p>
+                <p><strong>{text !== "" ? text.trim().split(/\s+/).length : 0}</strong> words, <strong>{text.length}</strong> characters</p>
                 <p><strong>{text !== "" ? text.trim().split(" ").length * 0.008 : 0}</strong> mins to read</p>
                 <h2>Preview</h2>
                 <p>{text}</p>
